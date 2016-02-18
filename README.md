@@ -36,7 +36,7 @@ registered = model.run(data)
 loading
 
 ```python
-from register import load
+from registration import load
 model = load('model.json')
 result = model.transform(data)
 ```
