@@ -78,9 +78,24 @@ model = load('model.json')
 
 ## algorithms
 
-##### `CrossCorr().fit(images, reference)`
+##### `CrossCorr(axis=None).fit(images, reference)`
 
 Uses cross-correlation to estimate an integer n-dimensional displacement between all images and a reference.
 
+- `axis` specify an axis to restrict estimates to e.g. `axis=2` to only estimate displacements in (0,1)
 - `images` an ndaraay or thunder images object with the images to align
 - `reference` an ndarray reference image
+
+## tests
+
+Run tests with 
+
+```
+py.test
+```
+
+Tests run locally by default, but the exact same tests can be run against Spark locally using
+
+```
+py.test --engine=spark
+```
