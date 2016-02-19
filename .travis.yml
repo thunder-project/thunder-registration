@@ -1,0 +1,31 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.4"
+
+jdk:
+  - openjdk7
+
+sudo: false
+
+install:
+  - wget http://repo.continuum.io/miniconda/Miniconda-3.7.3-Linux-x86_64.sh -O miniconda.sh;
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+  - conda create --yes -q -n test python=$TRAVIS_PYTHON_VERSION pip numpy scipy scikit-learn scikit-image pytest boto
+  - source activate test
+  - pip install .
+  - pip install -r requirements-dev.txt
+  - wget http://d3kbcqa49mib13.cloudfront.net/spark-1.5.2-bin-hadoop2.6.tgz
+  - tar -xzf spark-1.5.2-bin-hadoop2.6.tgz
+
+script:
+  - export SPARK_HOME=`pwd`/spark-1.5.2-bin-hadoop2.6
+  - export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
+  - export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.8.2.1-src.zip:$PYTHONPATH
+  - py.test
