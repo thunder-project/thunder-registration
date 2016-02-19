@@ -39,7 +39,7 @@ print(model.transformations)
 
 ## usage
 
-First pick an algorithm (some take parameters)
+First pick an algorithm. Some algorithms take parameters, some don't.
 
 ```python
 from registration import CrossCorr
