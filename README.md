@@ -2,13 +2,13 @@
 
 Algorithms for registering sequences of images. Includes a collection of `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the `scikit-learn` style. Built on `numpy` and `scipy`. Works well alongside `thunder` and supprts parallelization, but can be used as a standalone module on local arrays.
 
-# installation
+## installation
 
 ```bash
 pip install thunder-registration
 ```
 
-# example
+## example
 
 Create shifted copies of a reference image
 
@@ -37,7 +37,7 @@ print(model.transformations)
 >> {(0,): Displacement(delta=[1, 0]), (1,): Displacement(delta=[0, 1])}
 ```
 
-### usage
+## usage
 
 Run an algorithm to compute registration parameters
 
@@ -69,7 +69,7 @@ from registration import load
 model = load('model.json')
 ```
 
-### algorithms
+## algorithms
 
 ##### `CrossCorr().fit(images, reference)`
 
