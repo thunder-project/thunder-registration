@@ -71,7 +71,7 @@ model = load('model.json')
 
 ### algorithms
 
-#### `CrossCorr().fit(images, reference)`
+##### `CrossCorr().fit(images, reference)`
 
 Uses cross-correlation to estimate an integer n-dimensional displacement between all images and a reference.
 
