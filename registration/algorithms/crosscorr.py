@@ -31,12 +31,7 @@ class CrossCorr(object):
         check_reference(images, reference)
 
         func = lambda image: Displacement.compute(image, reference)
-
-        if images.mode == 'local':
-            transformations = {(key,): func(image) for key, image in enumerate(images.values)}
-
-        if images.mode == 'spark':
-            transformations = images.tordd().mapValues(func).collectAsMap()
+        transformations = images.map_generic(func, return_dict=True)
 
         algorithm = self.__class__.__name__
         return RegistrationModel(transformations, algorithm=algorithm)

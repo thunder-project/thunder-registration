@@ -36,7 +36,7 @@ class RegistrationModel(object):
             (k, v) = item
             return self.transformations[k].apply(v)
 
-        return images.map_with_keys(apply)
+        return images.map(apply, with_keys=True)
 
     def __repr__(self):
         s = self.__class__.__name__
