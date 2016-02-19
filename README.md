@@ -55,7 +55,7 @@ registered = model.transform(data)
 Or do both at once
 
 ```python
-registered = model.fit_and_transform(data)
+registered = CrossCorr().fit_and_transform(data)
 ```
 
 Save and load models
