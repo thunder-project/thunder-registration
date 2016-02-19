@@ -46,7 +46,7 @@ from registration import CrossCorr
 model = CrossCorr().fit(data)
 ```
 
-Use a model to apply the estimated registration
+Use a model to apply the estimated registration to the same or different data
 
 ```python
 registered = model.transform(data)
@@ -58,7 +58,16 @@ Or do both at once
 registered = model.fit_and_transform(data)
 ```
 
-Save and load models (coming soon)
+Save and load models
+
+```python
+model.save('model.json')
+```
+
+```python
+from registration import load
+model = load('model.json')
+```
 
 ### algorithms
 
