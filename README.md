@@ -49,7 +49,6 @@ algorithm = CrossCorr()
 Fit the algorithm to compute registration parameters and return a model
 
 ```python
-from registration import CrossCorr
 model = algorithm.fit(data)
 ```
 
