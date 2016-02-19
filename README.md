@@ -39,7 +39,7 @@ print(model.transformations)
 
 ## usage
 
-Run an algorithm to compute registration parameters
+Fit an algorithm to compute registration parameters
 
 ```python
 from registration import CrossCorr
