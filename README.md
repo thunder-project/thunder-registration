@@ -39,14 +39,21 @@ print(model.transformations)
 
 ## usage
 
-Fit an algorithm to compute registration parameters
+First pick an algorithm (some take parameters)
 
 ```python
 from registration import CrossCorr
-model = CrossCorr().fit(data)
+algorithm = CrossCorr()
 ```
 
-Use a model to apply the estimated registration to the same or different data
+Fit the algorithm to compute registration parameters and return a model
+
+```python
+from registration import CrossCorr
+model = algorithm.fit(data)
+```
+
+The attribute `model.transformations` is a dictionary mapping image index to whatever transformation type was returned by the fitting. You can use the model to apply the estimated registration to the same or different data.
 
 ```python
 registered = model.transform(data)
@@ -55,10 +62,10 @@ registered = model.transform(data)
 Or do both at once
 
 ```python
-registered = CrossCorr().fit_and_transform(data)
+registered = algorithm.fit_and_transform(data)
 ```
 
-Save and load models
+You can also save and load models (TODO)
 
 ```python
 model.save('model.json')
