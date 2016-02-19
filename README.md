@@ -83,7 +83,7 @@ model = load('model.json')
 Uses cross-correlation to estimate an integer n-dimensional displacement between all images and a reference.
 
 - `axis` specify an axis to restrict estimates to e.g. `axis=2` to only estimate displacements in (0,1)
-- `images` an ndaraay or thunder images object with the images to align
+- `images` an ndarray or thunder images object with the images to align
 - `reference` an ndarray reference image
 
 ## tests
