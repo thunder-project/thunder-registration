@@ -1,49 +1,20 @@
-""" Transformations produced by registration methods """
-from numpy import asarray
-from thunder.utils.serializable import Serializable
+from thunder.images import fromarray, Images
+from numpy import asarray, ndarray
 
+def check_images(data):
 
-class Transformation(object):
-    """ Base class for transformations """
+    if isinstance(data, ndarray):
+        data = fromarray(data)
+    
+    if not isinstance(data, Images):
+        data = fromarray(asarray(data))
 
-    def apply(self, im):
-        raise NotImplementedError
+    if len(data.shape) not in set([3, 4]):
+        raise Exception('Number of image dimensions %s must be 2 or 3' % (len(data.shape)))
 
+    return data
 
-class Displacement(Transformation, Serializable):
-    """
-    Class for transformations based on spatial displacements.
-
-    Can be applied to either images or volumes.
-
-    Parameters
-    ----------
-    delta : list
-        A list of spatial displacements for each dimensino,
-        e.g. [10,5,2] for a displacement of 10 in x, 5 in y, 2 in z
-    """
-
-    def __init__(self, delta=None):
-        self.delta = delta
-
-    def toArray(self):
-        """
-        Return transformation as an array
-        """
-        return asarray(self.delta)
-
-    def apply(self, im):
-        """
-        Apply an n-dimensional displacement by shifting an image or volume.
-
-        Parameters
-        ----------
-        im : ndarray
-            The image or volume to shift
-        """
-        from scipy.ndimage.interpolation import shift
-
-        return shift(im, map(lambda x: -x, self.delta), mode='nearest')
-
-    def __repr__(self):
-        return "Displacement(delta=%s)" % repr(self.delta)
+def check_reference(images, reference):
+    if not images.shape[1:] == reference.shape:
+        raise Exception('Image shape %s and reference shape %s must match'
+                        % (images.shape[1:], reference.shape))

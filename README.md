@@ -1,6 +1,6 @@
 # thunder-registration
 
-Algorithms for registering sequences of images. Includes a collection of `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the `scikit-learn` style. Built on `numpy`, `scipy`, `sklearn`, and `skimage`. Works well alongside `thunder`, but can be used as a standalone module on local arrays.
+Algorithms for registering sequences of images. Includes a collection of `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the `scikit-learn` style. Built on `numpy` and `scipy`. Works well alongside `thunder` and supprts parallelization, but can be used as a standalone module on local arrays.
 
 # installation
 
@@ -8,41 +8,63 @@ Algorithms for registering sequences of images. Includes a collection of `algori
 pip install thunder-registration
 ```
 
-# examples
+# example
 
-### algorithms
+Create shifted copies of a reference image
 
-run an algorithm to compute registration parameters
+```python
+from numpy import arange
+from scipy.ndimage.interpolation import shift
+
+reference = arange(9).reshape(3, 3)
+deltas = [[1, 0], [0, 1]]
+shifted = [shift(reference, delta, mode='wrap', order=0) for delta in deltas]
+```
+
+Then perform registration using cross correlation
 
 ```python
 from registration import CrossCorr
-model = CrossCorr(params).fit(data)
+
+register = CrossCorr()
+model = register.fit(shifted, reference=reference)
 ```
 
-then align an image sequence using those parameters
+The estimated transformations should match the `deltas` we used
+
+```python
+print(model.transformations)
+>> {(0,): Displacement(delta=[1, 0]), (1,): Displacement(delta=[0, 1])}
+```
+
+### usage
+
+Run an algorithm to compute registration parameters
+
+```python
+from registration import CrossCorr
+model = CrossCorr().fit(data)
+```
+
+Use a model to apply the estimated registration
 
 ```python
 registered = model.transform(data)
 ```
 
-or do both at once
+Or do both at once
 
 ```python
-registered = model.run(data)
+registered = model.fit_and_transform(data)
 ```
 
-### models
+Save and load models (coming soon)
 
-loading
+### algorithms
 
-```python
-from registration import load
-model = load('model.json')
-result = model.transform(data)
-```
+#### `CrossCorr().fit(images, reference)`
 
-saving
+Uses cross-correlation to estimate an integer n-dimensional displacement between all images and a reference.
 
-```python
-model.save('model.json')
-```
+- `images` an ndaraay or thunder images object with the images to align
+- `reference` an ndarray reference image
