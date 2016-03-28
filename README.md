@@ -1,6 +1,6 @@
 # thunder-registration
 
-Algorithms for registering sequences of images. Includes a collection of `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the `scikit-learn` style. Built on `numpy` and `scipy`. Compatible with Python 2.7+ and 3.4+. Works well alongside `thunder` and supprts parallelization, but can be used as a standalone module on local arrays.
+Algorithms for registering sequences of images. Includes a collection of `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the `scikit-learn` style. Built on `numpy` and `scipy`. Compatible with Python 2.7+ and 3.4+. Works well alongside `thunder` and supprts parallelization via Spark, but can be used as a standalone module on local arrays.
 
 ## installation
 
@@ -58,26 +58,33 @@ The attribute `model.transformations` is a dictionary mapping image index to wha
 registered = model.transform(data)
 ```
 
-Or do both at once
+## algorithm
 
-```python
-registered = algorithm.fit_and_transform(data)
-```
+All algorithms have the following methods:
 
-You can also save and load models (TODO)
+#### `algorithm.fit(data, opts)`
 
-```python
-model.save('model.json')
-```
+Fits the algorthm to the `data`, with optional arguments depending on the algorithm. The `data` can be a `numpy` `ndarray` or a `thunder` `Images` object.
 
-```python
-from registration import load
-model = load('model.json')
-```
+## model
 
-## algorithms
+The result of fitting an `algorithm` to data is a `model`.
 
-##### `CrossCorr(axis=None).fit(images, reference)`
+A `model` has the following properties and methods:
+
+#### `model.transformations`
+
+A dictionary mapping image index to the transformation returned by fitting.
+
+#### `model.transform(data)`
+
+Applies the estimated transformations to new data. As with fitting, `data` can be a `numpy` `ndarray` or a `thunder` `Images` object.
+
+## list of algorithms
+
+The following algorithms are available:
+
+#### `CrossCorr(axis=None).fit(images, reference)`
 
 Uses cross-correlation to estimate an integer n-dimensional displacement between all images and a reference.
 
