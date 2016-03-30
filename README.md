@@ -4,7 +4,7 @@
 
 This package Includes a collection of algorithms for image registration. It is well-suited to medical and neuroscience imaging domains.
 
-The API is designed around `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the style of `scikit-learn`. Built on `numpy` and `scipy`. Compatible with Python 2.7+ and 3.4+. Works well alongside [`thunder`](http://thunder-project.org) and supprts parallelization via [Spark](spark-project.org), but can be used as a standalone package on local `numpy` arrays.
+The API is designed around `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the style of `scikit-learn`. Built on `numpy` and `scipy`. Compatible with Python 2.7+ and 3.4+. Works well alongside [`thunder`](http://thunder-project.org) and supprts parallelization via [`spark`](spark-project.org), but can be used as a standalone package on local `numpy` arrays.
 
 ## installation
 
