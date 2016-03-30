@@ -1,6 +1,6 @@
 # thunder-registration
 
->> algorithms for registering sequences of images
+> algorithms for registering sequences of images
 
 This package Includes a collection of algorithms for image registration.
 
