@@ -4,7 +4,7 @@
 
 This package Includes a collection of algorithms for image registration. It is well-suited to registering movies obtained in the medical or neuroscience imaging domains, but can be applied to any image sequences requiring alignment.
 
-The API is designed around `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the style of [`scikit-learn`](http://scikit-learn.org/stable/). Built on `numpy` and `scipy`. Compatible with Python 2.7+ and 3.4+. Works well alongside [`thunder`](http://thunder-project.org) and supprts parallelization via [`spark`](spark-project.org), but can be used as a standalone package on local `numpy` arrays.
+The API is designed around `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the style of [`scikit-learn`](http://scikit-learn.org/stable/). Built on [`numpy`](https://github.com/numpy/numpy) and [`scipy`](https://github.com/scipy/scipy). Compatible with Python 2.7+ and 3.4+. Works well alongside [`thunder`](https://github.com/thunder-project/thunder) and supprts parallelization via [`spark`](https://github.com/apache/spark), but can be used as a standalone package on local [`numpy`](https://github.com/numpy/numpy) arrays.
 
 ## installation
 
@@ -66,7 +66,7 @@ All algorithms have the following methods:
 
 #### `algorithm.fit(data, opts)`
 
-Fits the algorthm to the `data`, with optional arguments depending on the algorithm. The `data` can be a `numpy` `ndarray` or a `thunder` `Images` object.
+Fits the algorthm to the `data`, with optional arguments depending on the algorithm. The `data` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
 
 ### model
 
@@ -80,7 +80,7 @@ A dictionary mapping image index to the transformation returned by fitting.
 
 #### `model.transform(data)`
 
-Applies the estimated transformations to new data. As with fitting, `data` can be a `numpy` `ndarray` or a `thunder` `Images` object.
+Applies the estimated transformations to new data. As with fitting, `data` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
 
 ## list of algorithms
 
