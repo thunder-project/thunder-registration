@@ -1,6 +1,10 @@
 # thunder-registration
 
-Algorithms for registering sequences of images. Includes a collection of `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the `scikit-learn` style. Built on `numpy` and `scipy`. Compatible with Python 2.7+ and 3.4+. Works well alongside `thunder` and supprts parallelization via Spark, but can be used as a standalone module on local arrays.
+>> algorithms for registering sequences of images
+
+This package Includes a collection of algorithms for image registration.
+
+The API is designed around `algorithms` that can be `fit` to data, all of which return a `model` that can be used to `transform` new data, in the style of `scikit-learn`. Built on `numpy` and `scipy`. Compatible with Python 2.7+ and 3.4+. Works well alongside [`thunder`](http://thunder-project.org) and supprts parallelization via [Spark](spark-project.org), but can be used as a standalone package on local `numpy` arrays.
 
 ## installation
 
@@ -10,43 +14,41 @@ pip install thunder-registration
 
 ## example
 
-Create shifted copies of a reference image
+In this example we create shifted copies of a reference image and then align them
 
 ```python
+# create shifted copies
+
 from numpy import arange
 from scipy.ndimage.interpolation import shift
 
 reference = arange(9).reshape(3, 3)
 deltas = [[1, 0], [0, 1]]
 shifted = [shift(reference, delta, mode='wrap', order=0) for delta in deltas]
-```
 
-Then perform registration using cross correlation
+# perform registration
 
-```python
 from registration import CrossCorr
 
 register = CrossCorr()
 model = register.fit(shifted, reference=reference)
-```
 
-The estimated transformations should match the `deltas` we used
+# the estimated transformations should match the deltas we used
 
-```python
 print(model.transformations)
 >> {(0,): Displacement(delta=[1, 0]), (1,): Displacement(delta=[0, 1])}
 ```
 
 ## usage
 
-First pick an algorithm. Some algorithms take parameters, some don't.
+Import and construct an algorithm.
 
 ```python
 from registration import CrossCorr
 algorithm = CrossCorr()
 ```
 
-Fit the algorithm to compute registration parameters and return a model
+Fit the algorithm to `data` to compute registration parameters and return a model
 
 ```python
 model = algorithm.fit(data)
@@ -58,7 +60,9 @@ The attribute `model.transformations` is a dictionary mapping image index to wha
 registered = model.transform(data)
 ```
 
-## algorithm
+## api
+
+### algorithm
 
 All algorithms have the following methods:
 
@@ -66,7 +70,7 @@ All algorithms have the following methods:
 
 Fits the algorthm to the `data`, with optional arguments depending on the algorithm. The `data` can be a `numpy` `ndarray` or a `thunder` `Images` object.
 
-## model
+### model
 
 The result of fitting an `algorithm` to data is a `model`.
 
@@ -100,7 +104,7 @@ Run tests with
 py.test
 ```
 
-Tests run locally by default, but the exact same tests can be run against Spark locally using
+Tests run locally by default, but the same tests can be run against Spark locally using
 
 ```
 py.test --engine=spark
