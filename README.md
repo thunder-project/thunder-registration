@@ -64,9 +64,9 @@ registered = model.transform(data)
 
 All algorithms have the following methods:
 
-#### `algorithm.fit(data, opts)`
+#### `algorithm.fit(images, opts)`
 
-Fits the algorthm to the `data`, with optional arguments depending on the algorithm. The `data` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
+Fits the algorthm to the `images`, with optional arguments depending on the algorithm. The `images` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
 
 ### model
 
@@ -78,9 +78,9 @@ A `model` has the following properties and methods:
 
 A dictionary mapping image index to the transformation returned by fitting.
 
-#### `model.transform(data)`
+#### `model.transform(images)`
 
-Applies the estimated transformations to new data. As with fitting, `data` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
+Applies the estimated transformations to a new set of images. As with fitting, `images` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
 
 ## list of algorithms
 
@@ -91,8 +91,8 @@ The following algorithms are available:
 Uses cross-correlation to estimate an integer n-dimensional displacement between all images and a reference.
 
 - `axis` specify an axis to restrict estimates to e.g. `axis=2` to only estimate displacements in (0,1)
-- `images` an ndarray or thunder images object with the images to align
-- `reference` an ndarray reference image
+- `images` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object
+- `reference` an `ndarray` reference image
 
 ## tests
 
