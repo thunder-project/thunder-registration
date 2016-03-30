@@ -21,7 +21,6 @@ In this example we create shifted copies of a reference image and then align the
 
 from numpy import arange
 from scipy.ndimage.interpolation import shift
-
 reference = arange(9).reshape(3, 3)
 deltas = [[1, 0], [0, 1]]
 shifted = [shift(reference, delta, mode='wrap', order=0) for delta in deltas]
@@ -29,7 +28,6 @@ shifted = [shift(reference, delta, mode='wrap', order=0) for delta in deltas]
 # perform registration
 
 from registration import CrossCorr
-
 register = CrossCorr()
 model = register.fit(shifted, reference=reference)
 
