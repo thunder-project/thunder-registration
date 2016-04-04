@@ -66,7 +66,7 @@ All algorithms have the following methods:
 
 #### `algorithm.fit(images, opts)`
 
-Fits the algorthm to the `images`, with optional arguments depending on the algorithm. The `images` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
+Fits the algorthm to the `images`, with optional arguments that will depend on the algorithm. The `images` can be a [`numpy`](https://github.com/numpy/numpy) `ndarray` or a [`thunder`](https://github.com/thunder-project/thunder) `Images` object.
 
 ### model
 
