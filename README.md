@@ -102,7 +102,7 @@ Run tests with
 py.test
 ```
 
-Tests run locally by default, but the same tests can be run against Spark locally using
+Tests run locally with [`numpy`](https://github.com/numpy/numpy) by default, but the same tests can be run against a local [`spark`](https://github.com/apache/spark) installation using
 
 ```
 py.test --engine=spark
