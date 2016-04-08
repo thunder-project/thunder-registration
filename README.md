@@ -1,5 +1,8 @@
 # thunder-registration
 
+[![Latest Version](https://img.shields.io/pypi/v/thunder-registration.svg?style=flat-square)](https://pypi.python.org/pypi/thunder-registration)
+[![Build Status](https://img.shields.io/travis/thunder-project/thunder-registration/master.svg?style=flat-square)](https://travis-ci.org/thunder-project/thunder-registration) 
+
 > algorithms for registering sequences of images
 
 This package Includes a collection of algorithms for image registration. It is well-suited to registering movies obtained in the medical or neuroscience imaging domains, but can be applied to any image sequences requiring alignment.
