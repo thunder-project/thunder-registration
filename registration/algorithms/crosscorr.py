@@ -18,7 +18,7 @@ class CrossCorr(object):
     def __init__(self, axis=None):
         self.axis = axis
 
-    def get(self, image, reference):
+    def _get(self, image, reference):
         if self.axis is not None:
             return LocalDisplacement.compute(image, reference, self.axis)
         else:
