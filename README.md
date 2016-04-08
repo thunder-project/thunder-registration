@@ -49,7 +49,7 @@ algorithm = CrossCorr()
 Fit the algorithm to `data` to compute registration parameters and return a model
 
 ```python
-model = algorithm.fit(data)
+model = algorithm.fit(data, opts)
 ```
 
 The attribute `model.transformations` is a dictionary mapping image index to whatever transformation type was returned by the fitting. You can apply the estimated registration to the same or different data.
