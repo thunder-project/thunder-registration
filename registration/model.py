@@ -19,7 +19,7 @@ class RegistrationModel(object):
         where n is the number of images, and remaining dimensions depend
         on the particular transformations
         """
-        return asarray([x.toarray() for x in self.transformations.values()])
+        return asarray([value.toarray() for (key, value) in sorted(self.transformations.items())])
 
     def transform(self, images):
         """
