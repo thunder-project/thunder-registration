@@ -13,7 +13,10 @@ setup(
     author='freeman-lab',
     author_email='the.freeman.lab@gmail.com',
     url='https://github.com/thunder-project/thunder-registration',
-    packages=['registration'],
+    packages=[
+        'registration',
+        'registration.algorithms'
+    ],
     install_requires=required,
     long_description='See ' + 'https://github.com/thunder-project/thunder-registration',
     license='MIT'
