@@ -35,7 +35,7 @@ class CrossCorr(object):
             A reference image to align to.
         """
         images = check_images(images)
-        check_reference(images, reference)
+        reference = check_reference(images, reference)
 
         def func(item):
             key, image = item
