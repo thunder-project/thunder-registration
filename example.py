@@ -10,4 +10,10 @@ shifted = [shift(reference, delta, mode='wrap', order=0) for delta in deltas]
 register = CrossCorr()
 model = register.fit(shifted, reference=reference)
 
-print model.transformations
+print 'real deltas: '
+print deltas
+
+print ''
+
+print 'estimated deletas: '
+print model.toarray().tolist()
